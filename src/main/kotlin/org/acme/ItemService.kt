@@ -31,7 +31,7 @@ class ItemService(private val sessionFactory: SessionFactory) {
             val predicates = colors.takeIf { it.isNotEmpty() }?.let {
                 val toPredicate: (Color) -> Predicate = { color ->
                     val expr = cb.function(
-                        "array_contains",
+                        "custom_function_xd",
                         Boolean::class.java,
                         root.get<Array<Color>>("colors"),
                         cb.literal(color.name))
