@@ -14,9 +14,14 @@ import jakarta.ws.rs.core.MediaType
 class ItemController(private val itemService: ItemService) {
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    fun findAllItems(@QueryParam("color") colors: List<Color>): Uni<List<Item>> {
-        return itemService.findAll(colors);
+    @Path("/by-colors")
+    fun findByColors(@QueryParam("color") colors: List<Color>): Uni<List<Item>> {
+        return itemService.findBy(colors);
     }
 
+    @GET
+    @Path("/by-color")
+    fun findByColor(@QueryParam("color") color: Color): Uni<List<Item>> {
+        return itemService.findBy(color);
+    }
 }

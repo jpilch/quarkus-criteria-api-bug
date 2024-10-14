@@ -1,4 +1,4 @@
-INSERT INTO item(id, colors)
+INSERT INTO item(id, colors, color)
 VALUES
-    (nextval('item_seq'), '{"RED", "GREEN", "BLUE"}'),
-    (nextval('item_seq'),'{"RED"}');
+    (nextval('item_seq'), '{"RED", "GREEN", "BLUE"}', 'RED'),
+    (nextval('item_seq'),'{"RED"}', 'BLUE');

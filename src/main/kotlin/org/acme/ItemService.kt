@@ -11,7 +11,21 @@ typealias ColorAttribute = SingularAttribute<Item, Array<Color>>;
 @ApplicationScoped
 class ItemService(private val sessionFactory: SessionFactory) {
 
-    fun findAll(colors: List<Color>): Uni<List<Item>> {
+    fun findBy(color: Color): Uni<List<Item>> {
+        return sessionFactory.withSession { session ->
+            val cb = sessionFactory.criteriaBuilder
+            val query = cb.createQuery(Item::class.java)
+            val root = query.from(Item::class.java)
+
+            val predicate = cb.equal(root.get<Color>("color"), color)
+
+            query.where(predicate)
+
+            session.createQuery(query).resultList
+        }
+    }
+
+    fun findBy(colors: List<Color>): Uni<List<Item>> {
         return sessionFactory.withSession { session ->
             val cb = sessionFactory.criteriaBuilder
             val query = cb.createQuery(Item::class.java)

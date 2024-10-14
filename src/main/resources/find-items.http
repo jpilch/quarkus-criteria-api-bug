@@ -1,0 +1,9 @@
+# Fails
+GET localhost:8080/items/by-colors?color=RED
+Accept: application/json
+
+###
+
+# Passes
+GET localhost:8080/items/by-color?color=RED
+Accept: applicaiton/json
