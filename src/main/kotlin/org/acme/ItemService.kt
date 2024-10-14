@@ -3,10 +3,7 @@ package org.acme
 import io.smallrye.mutiny.Uni
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.persistence.criteria.Predicate
-import jakarta.persistence.metamodel.SingularAttribute
 import org.hibernate.reactive.mutiny.Mutiny.SessionFactory
-
-typealias ColorAttribute = SingularAttribute<Item, Array<Color>>;
 
 @ApplicationScoped
 class ItemService(private val sessionFactory: SessionFactory) {
@@ -36,7 +33,7 @@ class ItemService(private val sessionFactory: SessionFactory) {
                     val expr = cb.function(
                         "array_contains",
                         Boolean::class.java,
-                        root.get<ColorAttribute>("colors"),
+                        root.get<Array<Color>>("colors"),
                         cb.literal(color.name))
 
                     cb.isTrue(expr)
