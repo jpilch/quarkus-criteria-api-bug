@@ -5,5 +5,5 @@ Accept: application/json
 ###
 
 # Passes
-GET localhost:8080/items/by-color?color=RED
-Accept: applicaiton/json
+GET localhost:8080/items/by-color?color=BLUE
+Accept: application/json
